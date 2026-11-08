@@ -16,19 +16,45 @@
 
 * **Theo dõi & Tự động hóa:** Cung cấp Dashboard phân tích số liệu trực quan cho phòng khám và hệ thống Cronjob tự động nhắc nhở bệnh nhân tái đánh giá qua Email & Push Notification (FCM).
 
-## 🎥 Video Demo
+## 🎯 Bối cảnh & Phạm vi Dự án (Project Scope & Engineering Focus)
 
-*([**Link Video Demo Google Drive**](https://drive.google.com/file/d/149VNcCCXVGMD3Jn9N_d0Y7JyDEgF6ZZ-/view?usp=drive_link))*
+> **Lưu ý về phạm vi:** Đây là dự án **Capstone chuyên sâu trong thời hạn 1 tháng (1-Month Intensive Capstone)**. Dự án được định hướng tập trung vào **chất lượng kỹ thuật công nghệ phần mềm**, **tối ưu hiệu năng** và **chiều sâu kiến trúc** thay vì dàn trải số lượng tính năng bề nổi.
+
+### 💎 Trọng tâm Kỹ thuật & Tiêu chuẩn Triển khai:
+* **Tuân thủ Kế hoạch & Đặc tả (Requirement & Planning Compliance):** Triển khai bám sát kế hoạch tiến độ và đáp ứng trọn vẹn các yêu cầu nghiệp vụ cốt lõi đã đề ra.
+* **Quy trình Code Review & Best Practices:** Mọi tính năng đều trải qua quy trình review code nghiêm ngặt, tuân thủ Clean Code, chia tách module hóa mạch lạc (Modular Architecture trên NestJS, App Router trên Next.js) và đảm bảo type-safety với TypeScript.
+* **Tối ưu hóa Hiệu năng (Performance Optimization):** 
+  * Áp dụng **Cursor-based Pagination** cho các danh sách dữ liệu lớn để tối ưu truy vấn cơ sở dữ liệu.
+  * Tích hợp **Virtualized List (`@tanstack/react-virtual`)** và Optimistic UI cho khung chat, đảm bảo cuộn mượt mà kể cả khi có hàng nghìn tin nhắn.
+  * Tách biệt cơ chế xác thực **Dual Authentication (JWT)** bảo vệ phân quyền chặt chẽ giữa Bác sĩ và Bệnh nhân.
+* **Tính năng Cốt lõi Chuyên sâu (Core Technical Highlights):**
+  * **Real-time Chat:** Kiến trúc Room-based với Socket.IO, xác thực JWT tại Handshake, đầy đủ trạng thái Typing, Read Receipts, Reactions, Sticker, Upload media và tính năng chuỗi tương tác (Streak).
+  * **Push Notification (FCM) & Automation:** Đẩy thông báo tức thời đa thiết bị qua Firebase Cloud Messaging kết hợp Cron Jobs tự động hóa nhắc nhở định kỳ theo lộ trình phục hồi.
+
+## 🌐 Trải nghiệm Trực tiếp (Live Demo) & Video
+
+Hệ thống đã được đóng gói và triển khai (Production Deploy) hoàn chỉnh trên nền tảng **Render**:
+
+* 📋 **Web Assessment (Cổng Đánh giá):** [https://knee-rehab-program-assess.onrender.com](https://knee-rehab-program-assess.onrender.com)
+* 👨‍⚕️ **Clinical Portal (Cổng Bác sĩ & Quản trị):** [https://knee-rehab-program-portal.onrender.com](https://knee-rehab-program-portal.onrender.com)
+* 🧑‍🦽 **Patient Portal (Cổng Bệnh nhân):** [https://knee-rehab-program-patient-portal.onrender.com](https://knee-rehab-program-patient-portal.onrender.com)
+* ⚙️ **API Server & Swagger UI:** [https://knee-rehab-program-api.onrender.com](https://knee-rehab-program-api.onrender.com) *(Tài liệu API chi tiết tại `/api`)*
+
+> 💡 *Lưu ý: Do sử dụng gói lưu trữ miễn phí (Free Tier) trên Render, các dịch vụ có thể cần khoảng 30 - 50 giây để khởi động lại (spin-up) trong lần truy cập đầu tiên.*
+
+### 🎥 Video Demo Giới thiệu
+* 📹 **[Xem Video Demo chi tiết trên Google Drive](https://drive.google.com/file/d/149VNcCCXVGMD3Jn9N_d0Y7JyDEgF6ZZ-/view?usp=drive_link)**
 
 ## 📦 Cấu trúc dự án (Repositories)
 
 Hệ thống được thiết kế theo kiến trúc tách biệt gồm **1 Backend API trung tâm** và **3 ứng dụng Frontend chuyên biệt**:
 
-| **#** | **Tên thành phần** | **Link Repository** | **Công nghệ chính** | **Đối tượng & Vai trò** | 
-| **1** | **API Server** | [🔗 knee-rehab-program-api](https://github.com/MinhTuNguyen02/knee-rehab-program-api) | NestJS 11, TypeORM, PostgreSQL, Socket.IO, FCM | Xử lý toàn bộ Business Logic, RESTful API, WebSocket Gateway, Cron Jobs & Dual Auth. | 
-| **2** | **Web Assessment** | [🔗 knee-rehab-program-assess](https://github.com/MinhTuNguyen02/knee-rehab-program-assess) | Next.js 16, React 19, TailwindCSS 4 | Cổng đánh giá sức khỏe đầu gối công khai (Public), phân loại Zone và thu thập thông tin Opt-in. | 
-| **3** | **Clinical Portal** | [🔗 knee-rehab-program-clinical-portal](https://github.com/MinhTuNguyen02/knee-rehab-program-clinical-portal) | Next.js 16, SWR, Recharts, Socket.IO Client | Cổng quản trị dành cho Bác sĩ/Admin: Xem thống kê, quản lý bệnh nhân (Leads), nhân sự & Chat. | 
-| **4** | **Patient Portal** | [🔗 knee-rehab-program-patient-portal](https://github.com/MinhTuNguyen02/knee-rehab-program-patient-portal) | Next.js 16, shadcn/ui, SWR, Socket.IO Client | Cổng cá nhân của Bệnh nhân: Theo dõi lịch sử phục hồi, biểu đồ tiến triển và nhắn tin với bác sĩ. | 
+| # | Tên thành phần | Link Repository | Live Demo (Render) | Công nghệ chính | Đối tượng & Vai trò |
+| :-: | :--- | :--- | :--- | :--- | :--- |
+| **1** | **API Server** | [🔗 knee-rehab-program-api](https://github.com/MinhTuNguyen02/knee-rehab-program-api) | [🌐 Live API](https://knee-rehab-program-api.onrender.com) ([Swagger](https://knee-rehab-program-api.onrender.com/api)) | NestJS 11, TypeORM, PostgreSQL, Socket.IO, FCM | Xử lý toàn bộ Business Logic, RESTful API, WebSocket Gateway, Cron Jobs & Dual Auth. |
+| **2** | **Web Assessment** | [🔗 knee-rehab-program-assess](https://github.com/MinhTuNguyen02/knee-rehab-program-assess) | [🌐 assess.onrender.com](https://knee-rehab-program-assess.onrender.com) | Next.js 16, React 19, TailwindCSS 4 | Cổng đánh giá sức khỏe đầu gối công khai (Public), phân loại Zone và thu thập thông tin Opt-in. |
+| **3** | **Clinical Portal** | [🔗 knee-rehab-program-clinical-portal](https://github.com/MinhTuNguyen02/knee-rehab-program-clinical-portal) | [🌐 portal.onrender.com](https://knee-rehab-program-portal.onrender.com) | Next.js 16, SWR, Recharts, Socket.IO Client | Cổng quản trị dành cho Bác sĩ/Admin: Xem thống kê, quản lý bệnh nhân (Leads), nhân sự & Chat. |
+| **4** | **Patient Portal** | [🔗 knee-rehab-program-patient-portal](https://github.com/MinhTuNguyen02/knee-rehab-program-patient-portal) | [🌐 patient-portal.onrender.com](https://knee-rehab-program-patient-portal.onrender.com) | Next.js 16, shadcn/ui, SWR, Socket.IO Client | Cổng cá nhân của Bệnh nhân: Theo dõi lịch sử phục hồi, biểu đồ tiến triển và nhắn tin với bác sĩ. | 
 
 ## 🏗️ Kiến trúc hệ thống
 
